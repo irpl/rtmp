@@ -86,6 +86,14 @@
    }
    ```
 
-ffmpeg -f dshow -i video="Integrated Webcam" -profile:v high -pix_fmt yuvj420p -level:v 4.1 -preset ultrafast -tune zerolatency -vcodec libx264 -r 10 -b:v 512k -s 640x360 -acodec aac -ac 2 -ab 32k -ar 44100 -f flv rtmp://167.71.240.119/live/live
+this one worked on windows:
 
-ffmpeg -f dshow -i video="Integrated Webcam" -framerate 1 -video_size 720x404 -vcodec libx264 -maxrate 768k -bufsize 8080k -vf "format=yuv420p" -g 60 -f flv rtmp://167.71.240.119/live/live
+```
+ffmpeg -f dshow -i video="Integrated Webcam" -profile:v high -pix_fmt yuvj420p -level:v 4.1 -preset ultrafast -tune zerolatency -vcodec libx264 -r 10 -b:v 512k -s 640x360 -acodec aac -ac 2 -ab 32k -ar 44100 -f flv rtmp://<server.ip>/live/live
+```
+
+this one should work on linux:
+
+```
+ffmpeg -f dshow -i video="Integrated Webcam" -framerate 1 -video_size 720x404 -vcodec libx264 -maxrate 768k -bufsize 8080k -vf "format=yuv420p" -g 60 -f flv rtmp://<server.ip>/live/live
+```
