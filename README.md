@@ -21,9 +21,9 @@
 
    ```
 
-4. Congigure nginx with the rtmp module
+4. Configure nginx with the rtmp module
    ```
-   ./auto/configure --add-module=../ngninx-rtmp-module
+   ./auto/configure --add-module=../nginx-rtmp-module
    ```
 5. then a compile
 
