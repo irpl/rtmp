@@ -85,6 +85,16 @@
      }
    }
    ```
+   
+run this to test the config file for errors
+```
+sudo /usr/local/nginx/sbin/nginx -t
+```
+
+run this to launch nginx
+```
+sudo /usr/local/nginx/sbin/nginx
+```
 
 this one worked on windows:
 
