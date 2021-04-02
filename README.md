@@ -96,6 +96,32 @@ run this to launch nginx
 sudo /usr/local/nginx/sbin/nginx
 ```
 
+create a service file so it can be lauched on boot. `/lib/systemd/system/nginx.service`
+```
+[Unit]
+Description=The NGINX HTTP and reverse proxy server
+After=syslog.target network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/nginx.pid
+ExecStartPre=/usr/local/nginx/sbin/nginx -t
+ExecStart=/usr/local/nginx/sbin/nginx
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+```
+
+enable it so that is starts on boot then start it
+```
+sudo systemctl enable nginx
+sudo systemctl start nginx
+```
+
 this one worked on windows:
 
 ```
