@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.7/plyr.css" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      video {
+        display: none;
+      }
+      #player {
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="player" playsinline controls data-poster=""></video>
+    <script src="https://cdn.plyr.io/3.6.7/plyr.polyfilled.js"></script>
+    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
+    <script>
+      (function () {
+        let key = prompt("Enter Streak Key:");
+        if (key != "" && key != null) {
+          const plyr = new Plyr("#player");
+          var video = document.querySelector("#player");
+
+          if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(`https://live.philliplogan.com/hls/${key}.m3u8`);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+              video.play();
+            });
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
