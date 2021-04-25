@@ -23,7 +23,7 @@
 
 4. Configure nginx with the rtmp module
    ```
-   ./auto/configure --add-module=../nginx-rtmp-module
+   ./auto/configure -with-http_ssl_module --add-module=../nginx-rtmp-module
    ```
 5. then a compile
 
@@ -85,18 +85,21 @@
      }
    }
    ```
-   
+
 run this to test the config file for errors
+
 ```
 sudo /usr/local/nginx/sbin/nginx -t
 ```
 
 run this to launch nginx
+
 ```
 sudo /usr/local/nginx/sbin/nginx
 ```
 
 create a service file so it can be lauched on boot. `/lib/systemd/system/nginx.service`
+
 ```
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
@@ -117,6 +120,7 @@ WantedBy=multi-user.target
 ```
 
 enable it so that is starts on boot then start it
+
 ```
 sudo systemctl enable nginx
 sudo systemctl start nginx
