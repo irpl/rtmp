@@ -13,6 +13,7 @@ services:
     ports:
       - "1935:1935"
       - "443:443"
+      - "80:80"
     depends_on:
       - "auth"
     command: /bin/sh -c "while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\""
